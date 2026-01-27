@@ -6,9 +6,7 @@
     <title>School Management System | Portal</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-
-<div class="main-container">
+<body class="student-bg"> <div class="main-container">
     <header>
         <h1>Academic Management Portal</h1>
         <p>Select your role to continue</p>
@@ -73,9 +71,31 @@
                 </div>
                 <button class="btn" onclick="alert('Admin Panel Loading...')">Enter Control Center</button>
             </div>
+
+            <div class="footer-contact">
+                <hr>
+                <p>📍 Address: Veltech University, Avadi, Chennai</p>
+                <p>📧 Email: has1122233@gmail.com | 📞 Ph: +91 987654321</p>
+                <p class="copy">&copy; 2026 School Management System. All Rights Reserved.</p>
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    // Logic to change the entire page background based on role
+    const body = document.body;
+    const radios = document.querySelectorAll('input[name="role"]');
+
+    radios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            body.className = ''; // Remove previous classes
+            if(document.getElementById('student-tab').checked) body.classList.add('student-bg');
+            if(document.getElementById('faculty-tab').checked) body.classList.add('faculty-bg');
+            if(document.getElementById('admin-tab').checked) body.classList.add('admin-bg');
+        });
+    });
+</script>
 
 </body>
 </html>

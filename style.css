@@ -1,87 +1,141 @@
+/* --- VARIABLES --- */
 :root {
     --student-color: #3498db; /* Blue */
     --faculty-color: #27ae60; /* Green */
-    --admin-color: #e67e22;   /* Orange */
-    --bg-color: #f4f7f6;
+    --admin-color: #f39c12;   /* Elegant Gold/Orange */
     --text-main: #2c3e50;
+}
+
+/* --- BACKGROUND THEMES --- */
+
+/* 1. Student: Energetic and Clean */
+body.student-bg {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background-attachment: fixed;
+}
+
+/* 2. Faculty: Professional Academic Pattern */
+body.faculty-bg {
+    background-color: #f0fdf4;
+    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #f0fdf4 10px ), repeating-linear-gradient( #dcfce755, #dcfce7 );
+    background-attachment: fixed;
+}
+
+/* 3. Admin: Elegant Dark Professional */
+body.admin-bg {
+    background-color: #1a202c;
+    background-image: linear-gradient(315deg, #1a202c 0%, #2d3748 74%);
+    background-attachment: fixed;
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, sans-serif;
-    background-color: var(--bg-color);
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    transition: all 0.5s ease;
 }
 
-.main-container { width: 100%; max-width: 450px; text-align: center; }
+.main-container { width: 100%; max-width: 450px; text-align: center; z-index: 10; }
 
-/* Tabs Logic */
+header h1 { color: var(--text-main); text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+body.admin-bg header h1 { color: #ffffff; }
+body.admin-bg header p { color: #cbd5e0; }
+
+/* --- TABS LOGIC --- */
 input[type="radio"] { display: none; }
 
 .tab-labels { display: flex; justify-content: center; gap: 5px; }
 
 .tab-labels label {
-    padding: 10px 20px;
+    padding: 12px 25px;
     background: #bdc3c7;
-    border-radius: 8px 8px 0 0;
+    border-radius: 10px 10px 0 0;
     cursor: pointer;
     font-weight: bold;
     color: white;
     transition: 0.3s;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
 }
 
 .login-card {
     background: white;
-    padding: 30px;
-    border-radius: 0 0 15px 15px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    border-top: 5px solid #ccc;
+    padding: 35px;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+    border-top: 6px solid #ccc;
 }
 
 .form-content { display: none; }
+
 .input-group { text-align: left; margin-bottom: 15px; }
-.input-group label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 14px; }
+.input-group label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 14px; color: #4a5568; }
 .input-group input {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
     box-sizing: border-box;
+    font-size: 14px;
 }
 
 .btn {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     color: white;
     font-weight: bold;
     cursor: pointer;
     margin-top: 10px;
+    font-size: 16px;
+    transition: transform 0.2s, opacity 0.2s;
 }
 
+.btn:hover { transform: translateY(-2px); opacity: 0.9; }
+
 .footer-links { margin-top: 15px; display: flex; justify-content: space-between; font-size: 12px; }
-.footer-links a { text-decoration: none; color: #7f8c8d; }
+.footer-links a { text-decoration: none; color: #a0aec0; transition: 0.2s; }
+.footer-links a:hover { color: var(--student-color); }
+
+/* --- FOOTER CONTACT SECTION --- */
+.footer-contact {
+    margin-top: 30px;
+    font-size: 11px;
+    color: #718096;
+    line-height: 1.6;
+}
+
+.footer-contact hr {
+    border: 0;
+    border-top: 1px solid #edf2f7;
+    margin-bottom: 15px;
+}
+
+.copy {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #4a5568;
+}
 
 /* --- THEME ENGINE --- */
 
-/* Student Selection */
-#student-tab:checked ~ .tab-labels label[for="student-tab"] { background: var(--student-color); }
+/* Student View Select */
+#student-tab:checked ~ .tab-labels label[for="student-tab"] { background: var(--student-color); transform: scale(1.05); }
 #student-tab:checked ~ .login-card { border-top-color: var(--student-color); }
 #student-tab:checked ~ .login-card .student-view { display: block; }
 #student-tab:checked ~ .login-card .btn { background: var(--student-color); }
 
-/* Faculty Selection */
-#faculty-tab:checked ~ .tab-labels label[for="faculty-tab"] { background: var(--faculty-color); }
+/* Faculty View Select */
+#faculty-tab:checked ~ .tab-labels label[for="faculty-tab"] { background: var(--faculty-color); transform: scale(1.05); }
 #faculty-tab:checked ~ .login-card { border-top-color: var(--faculty-color); }
 #faculty-tab:checked ~ .login-card .faculty-view { display: block; }
 #faculty-tab:checked ~ .login-card .btn { background: var(--faculty-color); }
 
-/* Admin Selection */
-#admin-tab:checked ~ .tab-labels label[for="admin-tab"] { background: var(--admin-color); }
+/* Admin View Select */
+#admin-tab:checked ~ .tab-labels label[for="admin-tab"] { background: var(--admin-color); transform: scale(1.05); }
 #admin-tab:checked ~ .login-card { border-top-color: var(--admin-color); }
 #admin-tab:checked ~ .login-card .admin-view { display: block; }
 #admin-tab:checked ~ .login-card .btn { background: var(--admin-color); }
