@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Management System | Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="main-container">
+    <header>
+        <h1>Academic Management Portal</h1>
+        <p>Select your role to continue</p>
+    </header>
+
+    <div class="tab-system">
+        <input type="radio" name="role" id="student-tab" checked>
+        <input type="radio" name="role" id="faculty-tab">
+        <input type="radio" name="role" id="admin-tab">
+
+        <div class="tab-labels">
+            <label for="student-tab">Student</label>
+            <label for="faculty-tab">Faculty</label>
+            <label for="admin-tab">Admin</label>
+        </div>
+
+        <div class="login-card">
+            
+            <div class="form-content student-view">
+                <h2 class="theme-title">Student Login</h2>
+                <div class="input-group">
+                    <label>Student ID (VTU Number)</label>
+                    <input type="text" placeholder="e.g. 1MS23CS001">
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="••••••••">
+                </div>
+                <button class="btn" onclick="alert('Student Dashboard Loading...')">Access Dashboard</button>
+                <div class="footer-links">
+                    <a href="#">Forgot Password?</a>
+                    <a href="#">Apply for Leave</a>
+                </div>
+            </div>
+
+            <div class="form-content faculty-view">
+                <h2 class="theme-title">Faculty Portal</h2>
+                <div class="input-group">
+                    <label>Faculty Employee ID</label>
+                    <input type="text" placeholder="FAC-2026-001">
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="••••••••">
+                </div>
+                <button class="btn" onclick="alert('Faculty Staffroom Loading...')">Login to Staffroom</button>
+                <div class="footer-links">
+                    <a href="#">Faculty Support</a>
+                    <a href="#">Class Mapping</a>
+                </div>
+            </div>
+
+            <div class="form-content admin-view">
+                <h2 class="theme-title">System Administrator</h2>
+                <div class="input-group">
+                    <label>Admin Username</label>
+                    <input type="text" placeholder="admin_root">
+                </div>
+                <div class="input-group">
+                    <label>Secure Key</label>
+                    <input type="password" placeholder="••••••••">
+                </div>
+                <button class="btn" onclick="alert('Admin Panel Loading...')">Enter Control Center</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
