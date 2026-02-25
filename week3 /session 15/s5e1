@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+    body {
+        margin: 0; background: #0a0e14; height: 100vh;
+        display: flex; justify-content: center; align-items: center;
+        color: #00ff41; font-family: 'Courier New', monospace; overflow: hidden;
+    }
+    #pulse {
+        position: absolute; border: 2px solid #00ff41; border-radius: 50%;
+        transform: translate(-50%, -50%); pointer-events: none;
+        animation: sonar 2s infinite ease-out;
+    }
+    @keyframes sonar {
+        0% { width: 0; height: 0; opacity: 1; }
+        100% { width: 500px; height: 500px; opacity: 0; }
+    }
+    .hud {
+        border: 1px solid #00ff41; padding: 20px; background: rgba(0,255,65,0.05);
+        box-shadow: 0 0 15px rgba(0,255,65,0.2);
+    }
+</style>
+</head>
+<body>
+    <div id="pulse"></div>
+    <div class="hud">
+        <h3>RADAR_SCANNER</h3>
+        <p id="dist">Distance from Core: 0px</p>
+        <p id="angle">Bearing: 0°</p>
+    </div>
+
+<script>
+    document.addEventListener("mousemove", (e) => {
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+        const dx = e.clientX - centerX;
+        const dy = e.clientY - centerY;
+        
+        const distance = Math.sqrt(dx*dx + dy*dy).toFixed(0);
+        const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+        
+        document.getElementById("dist").innerText = `Distance from Core: ${distance}px`;
+        document.getElementById("angle").innerText = `Bearing: ${angle.toFixed(1)}°`;
+        
+        // Change pulse speed based on proximity
+        const speed = Math.max(0.5, distance / 200);
+        document.getElementById("pulse").style.animationDuration = `${speed}s`;
+        document.getElementById("pulse").style.left = e.clientX + 'px';
+        document.getElementById("pulse").style.top = e.clientY + 'px';
+    });
+</script>
+</body>
+</html>

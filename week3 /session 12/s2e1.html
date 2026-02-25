@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            background: #050505;
+            color: #00f2ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .cyber-box {
+            background: #000;
+            padding: 40px;
+            border: 2px solid #00f2ff;
+            box-shadow: 0 0 15px #00f2ff, inset 0 0 5px #00f2ff;
+            width: 350px;
+            position: relative;
+        }
+        .cyber-box::before {
+            content: "SECURE_LINK";
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: #00f2ff;
+            color: #000;
+            padding: 2px 10px;
+            font-size: 10px;
+        }
+        input {
+            width: 100%;
+            background: #111;
+            border: 1px solid #00f2ff;
+            padding: 12px;
+            color: #fff;
+            margin: 10px 0;
+        }
+        button {
+            width: 100%;
+            background: #ff0055;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 4px 4px 0 #00f2ff;
+        }
+        button:hover {
+            background: #00f2ff;
+            color: #000;
+            box-shadow: 4px 4px 0 #ff0055;
+        }
+    </style>
+</head>
+<body>
+    <div class="cyber-box">
+        <h2>USER_AUTH</h2>
+        <input type="email" placeholder="ID_EMAIL">
+        <input type="password" placeholder="ACCESS_CODE">
+        <button>INITIALIZE</button>
+    </div>
+</body>
+</html>

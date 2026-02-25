@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acoustic Visualizer</title>
+    <style>
+        body {
+            margin: 0;
+            background: #0a0a0c;
+            color: #00f2ff;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .dashboard {
+            background: #121214;
+            border: 1px solid #333;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(0, 242, 255, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+
+        .visualizer {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 5px;
+            height: 100px;
+            margin: 20px 0;
+        }
+
+        .bar {
+            width: 10px;
+            background: #00f2ff;
+            height: 10%;
+            transition: height 0.15s ease;
+            box-shadow: 0 0 10px #00f2ff;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        button {
+            background: transparent;
+            border: 1px solid #00f2ff;
+            color: #00f2ff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #00f2ff;
+            color: #000;
+        }
+
+        .status { font-size: 0.8rem; margin-top: 15px; opacity: 0.7; }
+    </style>
+</head>
+<body>
+
+<div class="dashboard">
+    <h3>CORE_AUDIO_LINK</h3>
+    <div class="visualizer" id="vizContainer">
+        </div>
+    <div class="controls">
+        <button id="toggleBtn">INITIATE</button>
+        <button id="resetBtn">RESET</button>
+    </div>
+    <p class="status" id="statusText">SYSTEM_IDLE</p>
+</div>
+
+<script>
+    const container = document.getElementById('vizContainer');
+    const toggleBtn = document.getElementById('toggleBtn');
+    const statusText = document.getElementById('statusText');
+    let isActive = false;
+    let interval;
+
+    // Create 10 frequency bars
+    for(let i=0; i<10; i++) {
+        const bar = document.createElement('div');
+        bar.className = 'bar';
+        container.appendChild(bar);
+    }
+
+    const bars = document.querySelectorAll('.bar');
+
+    function animateBars() {
+        bars.forEach(bar => {
+            const height = isActive ? Math.random() * 100 : 10;
+            bar.style.height = height + '%';
+        });
+    }
+
+    toggleBtn.addEventListener('click', () => {
+        isActive = !isActive;
+        if(isActive) {
+            toggleBtn.innerText = "CEASE";
+            statusText.innerText = "STREAM_ACTIVE";
+            interval = setInterval(animateBars, 150);
+        } else {
+            toggleBtn.innerText = "INITIATE";
+            statusText.innerText = "STREAM_PAUSED";
+            clearInterval(interval);
+            animateBars(); // Reset to idle height
+        }
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+        isActive = false;
+        clearInterval(interval);
+        toggleBtn.innerText = "INITIATE";
+        statusText.innerText = "SYSTEM_RESET";
+        animateBars();
+    });
+</script>
+
+</body>
+</html>

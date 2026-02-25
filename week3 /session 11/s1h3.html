@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitality Health</title>
+    <style>
+        body {
+            background: #e0e5ec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #444;
+        }
+
+        .neu-card {
+            width: 320px;
+            padding: 30px;
+            border-radius: 30px;
+            background: #e0e5ec;
+            box-shadow: 9px 9px 16px rgb(163,177,198,0.6), 
+                        -9px -9px 16px rgba(255,255,255, 0.5);
+            text-align: center;
+        }
+
+        .step-circle {
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #e0e5ec;
+            box-shadow: inset 6px 6px 12px #b8b9be, 
+                        inset -6px -6px 12px #ffffff;
+        }
+
+        .btn-neu {
+            margin-top: 20px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 15px;
+            background: #e0e5ec;
+            box-shadow: 4px 4px 8px #b8b9be, 
+                        -4px -4px 8px #ffffff;
+            cursor: pointer;
+            color: #3182ce;
+            font-weight: bold;
+        }
+
+        .btn-neu:active {
+            box-shadow: inset 2px 2px 5px #b8b9be, 
+                        inset -2px -2px 5px #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="neu-card">
+        <h3>Daily Steps</h3>
+        <div class="step-circle">
+            <h2 id="stepCount">8,432</h2>
+            <small>Goal: 10k</small>
+        </div>
+        <button class="btn-neu" onclick="addStep()">Log Walk</button>
+    </div>
+
+    <script>
+        function addStep() {
+            let el = document.getElementById('stepCount');
+            let current = parseInt(el.innerText.replace(',', ''));
+            el.innerText = (current + 500).toLocaleString();
+        }
+    </script>
+</body>
+</html>
